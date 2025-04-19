@@ -1,16 +1,13 @@
 const express = require('express');
-const itemRoutes = require('./routes/itemRoutes');
 require('dotenv').config();
+const routes = require('./routes');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/api', routes);
 
-// Routes
-app.use('/api/items', itemRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Welcome to the Express API!');
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-module.exports = app;
