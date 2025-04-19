@@ -8,8 +8,27 @@ Health app
 - pharmacy can send the medicine to the patient
 - patient can see the medicine, doctor and pharmacy
 
-Criterions of Success:
+Criterions of Success(1): 
+- Text to the doctor (Frontend) from a doctor
+- Text to the pharmacy (Frontend)
+- Text to the patient (Frontend)
+All these three should be done in a way that corresponds.
+
+Patient Side:
+- Chat with obvious
+- See feedback when the doctor replies
+- see the details of the reply that thge 
+
+Doctor Side:
+- Doctor can see what patients trying to say
+- AI used to help summarize what it is
+- Possibly connect the prescription
+
 - Experience to be as smooth as possible (Frontend)
 - Oauth for authorizaion (security)
 - automatically categorize and summarize what the patients are saying (AI summary)
 - Mobile App to comunicate efficiently
+
+Criterions of Success(2):
+- The app should be able to handle a large number of users, data, requests
+- The app should be able to handle doctors sending information to pharmacies
