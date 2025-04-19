@@ -7,3 +7,9 @@ Health app
 - pharmacy can see the prescription
 - pharmacy can send the medicine to the patient
 - patient can see the medicine, doctor and pharmacy
+
+Criterions of Success:
+- Experience to be as smooth as possible (Frontend)
+- Oauth for authorizaion (security)
+- automatically categorize and summarize what the patients are saying (AI summary)
+- Mobile App to comunicate efficiently
