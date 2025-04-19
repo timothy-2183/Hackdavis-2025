@@ -1,0 +1,11 @@
+.patient-card {
+    color: black;
+    background-color: #4895ef;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    border: 1px black solid;
+    border-radius: 10px;
+}

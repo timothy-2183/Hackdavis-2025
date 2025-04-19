@@ -1,0 +1,22 @@
+.dashboard-text {
+    text-align: left;
+    font-size: 2em;
+}
+
+.dashboard-main {
+    min-width: 95vw;
+    min-height: 95vh;
+}
+
+.patients-panel {
+    max-width: 50vw;
+}
+
+.dashboard-container {
+    min-width: 95vw;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
