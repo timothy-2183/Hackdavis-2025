@@ -1,0 +1,9 @@
+Health app
+- people can track the symptoms
+- send the data to the doctor
+- doctor can see the data.
+- doctor can send the prescription
+- doctor can send the prescription to the pharmacy
+- pharmacy can see the prescription
+- pharmacy can send the medicine to the patient
+- patient can see the medicine, doctor and pharmacy
