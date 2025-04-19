@@ -9,20 +9,22 @@ Health app
 - patient can see the medicine, doctor and pharmacy
 
 Criterions of Success(1): 
-- Text to the doctor (Frontend) from a doctor
-- Text to the pharmacy (Frontend)
-- Text to the patient (Frontend)
+- Text to the doctor (Frontend) from a patient
+- Text to the pharmacy (Frontend) from a doctor
+- Text to the patient (Frontend) 
 All these three should be done in a way that corresponds.
 
 Patient Side:
-- Chat with doctor
+- Chat with primary doctor 
+- Tell symptoms
 - See feedback when the doctor replies
 - see the details of the reply that the doctor sent, further follow up required, final sentence given. 
 
 Doctor Side:
 - Doctor can see what patients trying to say
-- AI used to help summarize what it is
-- Possibly connect with the pharmacy and 
+- See original message, but also see the more specific area of pain, beyond layman terms
+- Ability to refer to other doctor in an easy way
+- Make Appointments
 
 Additional Details
 - Experience to be as smooth as possible (Frontend)
