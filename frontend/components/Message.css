@@ -17,3 +17,40 @@
 .message b {
     color: #3498db;
 }
+
+/* Styling for AI analysis messages */
+.analysis-message {
+    background-color: #1e293b;
+    border-left: 4px solid #3498db;
+}
+
+.analysis-header {
+    margin-bottom: 0.5rem !important;
+    font-size: 1.1rem;
+}
+
+.analysis-content .summary {
+    margin-bottom: 0.75rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.analysis-content .tags {
+    margin-top: 0.75rem;
+}
+
+.analysis-content h5 {
+    color: #f5f5f5;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.analysis-content ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.analysis-content li {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'wouter'
 import './Home.css'
 
 function Home() {
@@ -10,8 +11,8 @@ function Home() {
         <p>Patients? Say goodbye to Googling symptoms. Doctors? Say hello to quick communication that fits in your schedule.</p>
         
         <div className="cta-buttons">
-          <a href="/login" className="cta-button primary">Get Started</a>
-          <a href="/features" className="cta-button secondary">Learn More</a>
+          <Link href="/login" className="cta-button primary">Get Started</Link>
+          <Link href="/features" className="cta-button secondary">Learn More</Link>
         </div>
       </div>
     </div>

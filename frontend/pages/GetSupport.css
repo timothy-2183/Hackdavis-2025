@@ -60,3 +60,35 @@
 .symptoms-form button:hover {
     background-color: #2980b9;
 }
+
+/* Styling for loading states */
+.loading {
+  color: #888;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Styling for no messages */
+.no-messages {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Disabled form elements */
+textarea:disabled, 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Button loading state */
+button:disabled {
+  background-color: #555;
+}
+
+/* Required input fields */
+input:required {
+  border-left: 3px solid #3498db;
+}

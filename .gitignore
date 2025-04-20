@@ -1,2 +1,39 @@
 node_modules/
 .env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and sensitive data
+.env.local
+src/headers/config.py
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Database files
+*.db
+*.sqlite
+
+# Log files
+logs/
+*.log
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
