@@ -3,14 +3,15 @@
     margin: 2rem auto;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    background-color: #1e1e1e;
+    color: #e0e0e0;
 }
 
 .auth-container h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2c3e50;
+    color: #3498db;
 }
 
 .login-form {
@@ -28,17 +29,26 @@
 .form-row p {
     font-weight: 600;
     margin: 0;
+    color: #e0e0e0;
 }
 
 .form-row input, .form-row select {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 4px;
     font-size: 1rem;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+.form-row input:focus, .form-row select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
 }
 
 .form-row select {
-    background-color: white;
+    background-color: #2a2a2a;
     cursor: pointer;
 }
 
