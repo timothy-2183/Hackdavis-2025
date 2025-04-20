@@ -8,11 +8,13 @@ app = Flask(__name__)
 # Database configuration
 db_config = {
     'host': 'localhost',
-    'user': 'your_username',
-    'password': 'your_password',
-    'database': 'your_database'
+#    'user': 'root',
+#    'password': 'password',
+#    'database': 'health' 
+    'user': 'charles',
+    'password': 'supersecret',
+    'database': 'health'
 }
-
 def initdb():
     try:
         conn = mysql.connector.connect(**db_config)
