@@ -1,25 +1,103 @@
 from flask import Flask, request, jsonify
-import sqlite3
+import mysql.connector
+from headers.people import Patient, Doctor
+from headers.comments import Comment, Response
 
 app = Flask(__name__)
 
-def initdb():
-    patient_conn = sqlite3.connect('patient.db')
-    doctor_conn = sqlite3.connect('doctor.db')
-    comment_conn = sqlite3.connect('comment.db')
-    pat_cursor = patient_conn.cursor()
-    doc_cursor = doctor_conn.cursor()
-    com_cursor = comment_conn.cursor()
-    pat_cursor.execute('''CREATE TABLE IF NOT EXISTS patients( pat_id INTEGER PRIMARY KEY, pat_name TEXT, age INTEGER, contact TEXT, allergies TEXT, medications TEXT)''')
-    doc_cursor.execute('''CREATE TABLE IF NOT EXISTS doctors( doc_id INTEGER PRIMARY KEY, doc_name TEXT, age INTEGER, contact TEXT, specialization TEXT, patients TEXT, schedule TEXT)''')
-    com_cursor.execute('''CREATE TABLE IF NOT EXISTS comments( thread_id INTEGER, com_id INTEGER, content TEXT, auth_id TEXT)''')
+# Database configuration
+db_config = {
+    'host': 'localhost',
+    'user': 'your_username',
+    'password': 'your_password',
+    'database': 'your_database'
+}
 
-    patient_conn.commit()
-    doctor_conn.commit()
-    comment_conn.commit()
-    patient_conn.close()
-    doctor_conn.close()
-    comment_conn.close()
+def initdb():
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        
+        # Create patients table
+        cursor.execute('''CREATE TABLE IF NOT EXISTS patients(
+            pat_id INT PRIMARY KEY,
+            pat_name VARCHAR(255),
+            age INT,
+            contact VARCHAR(255),
+            allergies TEXT,
+            medications TEXT
+        )''')
+        
+        # Create doctors table
+        cursor.execute('''CREATE TABLE IF NOT EXISTS doctors(
+            doc_id INT PRIMARY KEY,
+            doc_name VARCHAR(255),
+            age INT,
+            contact VARCHAR(255),
+            specialization TEXT,
+            patients TEXT,
+            schedule TEXT
+        )''')
+        
+        # Create comments table
+        cursor.execute('''CREATE TABLE IF NOT EXISTS comments(
+            thread_id INT,
+            com_id INT,
+            content TEXT,
+            auth_id VARCHAR(255)
+        )''')
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+        print("Database initialized successfully")
+    except mysql.connector.Error as err:
+        print(f"Error initializing database: {err}")
+
+def insert_patient(pat_id, pat_name, age, contact, allergies, medications):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO patients (pat_id, pat_name, age, contact, allergies, medications) 
+                        VALUES (%s, %s, %s, %s, %s, %s)''', 
+                        (pat_id, pat_name, age, contact, allergies, medications))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return True
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+        return False
+
+def insert_doctor(doc_id, doc_name, age, contact, specialization, patients, schedule):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO doctors (doc_id, doc_name, age, contact, specialization, patients, schedule) 
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)''', 
+                        (doc_id, doc_name, age, contact, specialization, patients, schedule))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return True
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+        return False
+
+def insert_comment(thread_id, com_id, content, auth_id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO comments (thread_id, com_id, content, auth_id) 
+                        VALUES (%s, %s, %s, %s)''', 
+                        (thread_id, com_id, content, auth_id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return True
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+        return False
 
 @app.route('/insert_patient', methods=['POST'])
 def insert_patient_route():
@@ -31,8 +109,12 @@ def insert_patient_route():
     allergies = data['allergies']
     medications = data['medications']
 
-    insert_patient(pat_id, pat_name, age, contact, allergies, medications)
-    return jsonify({"message": "Patient inserted successfully"}), 200
+    success = insert_patient(pat_id, pat_name, age, contact, allergies, medications)
+    if success:
+        return jsonify({"message": "Patient inserted successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to insert patient"}), 500
+
 @app.route('/insert_doctor', methods=['POST'])
 def insert_doctor_route():
     data = request.get_json()
@@ -44,8 +126,12 @@ def insert_doctor_route():
     patients = data['patients']
     schedule = data['schedule']
 
-    insert_doctor(doc_id, doc_name, age, contact, specialization, patients, schedule)
-    return jsonify({"message": "Doctor inserted successfully"}), 200
+    success = insert_doctor(doc_id, doc_name, age, contact, specialization, patients, schedule)
+    if success:
+        return jsonify({"message": "Doctor inserted successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to insert doctor"}), 500
+
 @app.route('/insert_comment', methods=['POST'])
 def insert_comment_route():
     data = request.get_json()
@@ -54,5 +140,14 @@ def insert_comment_route():
     content = data['content']
     auth_id = data['auth_id']
 
-    insert_comment(thread_id, com_id, content, auth_id)
-    return jsonify({"message": "Comment inserted successfully"}), 200
+    success = insert_comment(thread_id, com_id, content, auth_id)
+    if success:
+        return jsonify({"message": "Comment inserted successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to insert comment"}), 500
+
+# Initialize database on startup
+initdb()
+
+if __name__ == "__main__":
+    app.run(debug=True)

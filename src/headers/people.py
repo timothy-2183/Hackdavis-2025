@@ -1,6 +1,5 @@
-
 class Patient():
-    def __init__(ID, self, name, age, contact, allergies, medications):
+    def __init__(self, ID, name, age, allergies, medications):
         self.ID = ID
         self.name = name
         self.age = age

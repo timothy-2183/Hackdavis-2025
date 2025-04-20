@@ -1,5 +1,5 @@
-from people import Patient, Doctor
-from prompter import ask_claude
+from headers.people import Patient, Doctor
+from headers.prompter import ask_claude
 
 class Comment():
     def __init__(self, title: str, content: str, author: Patient, first: bool):
