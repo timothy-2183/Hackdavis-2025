@@ -1,17 +1,26 @@
 .dashboard-text {
     text-align: left;
     font-size: 2em;
+    color: #3498db;
+    margin-top: 4rem;
+    margin-left: 2rem;
 }
 
 .dashboard-main {
-    gap: 1em;
+    gap: 1.5rem;
     display: flex;
     min-width: 95vw;
-    min-height: 95vh;
+    min-height: 90vh;
+    padding: 0 2rem 2rem;
 }
 
 .patients-panel {
     max-width: 50vw;
+}
+
+.patients-panel h3 {
+    color: #e0e0e0;
+    margin-bottom: 1rem;
 }
 
 .patients-container {
@@ -20,24 +29,31 @@
 }
 
 .conversation-panel {
-    color: black;
-    border-radius: 15px;
-    background-color: lightblue;
+    color: #e0e0e0;
+    border-radius: 10px;
+    background-color: #1e1e1e;
     display: flex;
     flex-direction: column;
     min-width: 30vw;
     height: 80vh;
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.conversation-panel h3 {
+    margin-bottom: 1rem;
+    color: #3498db;
 }
 
 .conversation-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 1em;
     overflow: auto;
+    padding: 1rem;
 }
-
 
 .feedback-panel {
     min-width: 35%;
@@ -46,12 +62,13 @@
 }
 
 .feedback-container {
-    color: black;
-    background-color: lightcyan;
-    border-radius: 15px;
-    padding: 1em;
+    color: #e0e0e0;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 1.5rem;
     min-width: 90%;
-    height: 50%;
+    height: fit-content;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .feedback-form {
@@ -59,20 +76,51 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
+.feedback-form p {
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
 
 .feedback-input {
-    width: 90%;
-    height: 20em;
+    width: 100%;
+    height: 10rem;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    resize: vertical;
 }
 
+.feedback-form button {
+    align-self: flex-end;
+    padding: 0.6rem 1.2rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.feedback-form button:hover {
+    background-color: #2980b9;
+}
 
 .dashboard-container {
     min-width: 95vw;
     min-height: 95vh;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #121212;
+    color: #e0e0e0;
+    padding-top: 2rem;
 }

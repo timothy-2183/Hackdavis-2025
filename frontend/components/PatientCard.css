@@ -1,21 +1,49 @@
 .patient-card {
-    color: black;
-    background-color: #7db2ee;
-    padding: 1em;
+    color: #e0e0e0;
+    background-color: #1e1e1e;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-    border: 1px black solid;
+    border: 1px solid #444;
     border-radius: 10px;
     min-width: 25vw;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .patient-active {
-    background-color: #67a8f3;
+    background-color: #2a2a2a;
+    border-left: 4px solid #3498db;
 }
 
 .patient-card:hover {
-    box-shadow: 5px 5px 5px lightskyblue;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.patient-info {
+    margin-bottom: 0.8rem;
+}
+
+.patient-info p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.symptoms-container {
+    margin-bottom: 1rem;
+}
+
+.symptoms-container p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #3498db;
+}
+
+.symptoms-container ul {
+    margin: 0;
+    padding-left: 1.2rem;
 }

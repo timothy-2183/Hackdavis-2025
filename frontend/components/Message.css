@@ -1,5 +1,19 @@
 .message {
-    background-color: white;
-    width: 75%;
-    border-radius: 15px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    width: 100%;
+    max-width: 90%;
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.message p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.message b {
+    color: #3498db;
 }
