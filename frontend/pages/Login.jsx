@@ -35,7 +35,7 @@ function Login() {
         localStorage.setItem('userData', JSON.stringify(data.user));
         // Redirect to dashboard based on user type
         const userType = data.user.user_type;
-        window.location.href = userType === 'doctor' ? '/doctor-dashboard' : '/patient-dashboard';
+        window.location.href = userType === 'doctor' ? '/dashboard' : '/getsupport';
       } else {
         // Login failed
         setError(data.message || 'Invalid username or password');

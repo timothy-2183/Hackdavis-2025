@@ -15,7 +15,7 @@
 }
 
 .patients-panel {
-    max-width: 50vw;
+    max-width: 45vw;
 }
 
 .patients-panel h3 {
@@ -56,7 +56,7 @@
 }
 
 .feedback-panel {
-    min-width: 35%;
+    min-width: 25%;
     max-width: 50vw;
     display: flex;
 }
