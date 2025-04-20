@@ -9,6 +9,7 @@ function Dashboard() {
   const [activePatient, setActivePatient] = useState(patientInfo[0]);
 
   function handleFeedbackSubmit(formData) {
+    // TODO this should add a message, authored by the doctor
 
     // update message log locally
     const prevState = messagesInfo;

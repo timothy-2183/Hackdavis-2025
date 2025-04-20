@@ -5,11 +5,12 @@ import Message from '../components/Message'
 function GetSupport() {
     const [messageData, setMessageData] = useState([]);
 
-    function handleMessageSubmit(formData) {
+    function handleMessageSubmit(formData) { // TODO this should add a new message the most recent conversation
 
     }
 
-    function handleSymptomSubmit(formData) {
+    function handleSymptomSubmit(formData) { // TODO this should add symptoms, allergies, and medication
+      // TODO basically starts a new conversation
 
     }
 
@@ -19,13 +20,14 @@ function GetSupport() {
         <h1 className='dashboard-text'>Get Support</h1>
         <div className='dashboard-main'>
             <div className='symptoms-panel'>
+              <h3>Start a new conversation</h3>
                 <form className='symptoms-form' action={handleSymptomSubmit}>
                     <div className='form-row'>
                         <p>Describe your allergies: </p>
                         <input></input>
                     </div>
                     <div className='form-row'>
-                        <p>Describe your previous medications: </p>
+                        <p>Describe your recent medications: </p>
                         <input></input>
                     </div>
                     <div className='form-row'>
