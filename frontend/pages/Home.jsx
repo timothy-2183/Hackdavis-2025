@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'wouter'
 import './Home.css'
+import { Link } from 'wouter'
 
 function Home() {
   return (
