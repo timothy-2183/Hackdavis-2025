@@ -34,7 +34,7 @@
     background-color: #1e1e1e;
     display: flex;
     flex-direction: column;
-    min-width: 30vw;
+    min-width: 25vw;
     height: 80vh;
     padding: 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -53,6 +53,7 @@
     gap: 1em;
     overflow: auto;
     padding: 1rem;
+    max-width: 450px;
 }
 
 .feedback-panel {
