@@ -116,10 +116,28 @@ def insert_doctor(doc_id, doc_name, age, contact, specialization, patients, sche
         print(f"Database error: {err}")
         return False
 
-def insert_comment(thread_id, com_id, content, auth_id):
+def insert_comment(id, content, auth_id):
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
+        com_id = 1
+
+        if id == 0:
+            # If the thread is new, set the thread_id to the next available id
+            cursor.execute("SELECT MAX(thread_id) FROM comments")
+            # Get the maximum thread_id from the comments table
+            # If no comments exist, set thread_id to 1
+            max_thread_id = cursor.fetchone()[0]
+            thread_id = 1 if max_thread_id is None else max_thread_id + 1
+        else:
+            thread_id = id 
+            # Insert the comment into the comments table
+            cursor.execute("SELECT MAX(com_id) FROM comments WHERE thread_id = %s", (id))
+            # Get the maximum com_id for the specified thread_id
+            max_com_id = cursor.fetchone()[0]
+            # If no comments exist for this thread, set com_id to 1
+            com_id = 1 if max_com_id is None else max_com_id + 1
+            # Insert the comment into the comments table
         cursor.execute('''INSERT INTO comments (thread_id, com_id, content, auth_id) 
                         VALUES (%s, %s, %s, %s)''', 
                         (thread_id, com_id, content, auth_id))
@@ -134,7 +152,7 @@ def insert_comment(thread_id, com_id, content, auth_id):
 @app.route('/insert_patient', methods=['POST'])
 def insert_patient_route():
     data = request.get_json()
-    pat_id = data['pat_id']
+    pat_id = '0'+ data['pat_id']
     pat_name = data['pat_name']
     age = data['age']
     contact = data['contact']
@@ -150,7 +168,7 @@ def insert_patient_route():
 @app.route('/insert_doctor', methods=['POST'])
 def insert_doctor_route():
     data = request.get_json()
-    doc_id = data['doc_id']
+    doc_id = '9'+ data['doc_id']
     doc_name = data['doc_name']
     age = data['age']
     contact = data['contact']
@@ -166,13 +184,16 @@ def insert_doctor_route():
 
 @app.route('/insert_comment', methods=['POST'])
 def insert_comment_route():
+    # If the thread is new, the id getting passed will be 0 and the comment id will be 1, otherwise it will correspondend to the thread id
     data = request.get_json()
-    thread_id = data['thread_id']
-    com_id = data['com_id']
+    id = data['id']
     content = data['content']
     auth_id = data['auth_id']
 
-    success = insert_comment(thread_id, com_id, content, auth_id)
+    # The json here is a bit change, the it takes ID, content and the id of the patient,
+
+    # this way we have less variables to pass around
+    success = insert_comment(id, content, auth_id)
     if success:
         return jsonify({"message": "Comment inserted successfully"}), 200
     else:
@@ -364,3 +385,127 @@ initdb()
 if __name__ == "__main__":
     print("Starting Flask server on http://localhost:5000")
     app.run(debug=True, host='0.0.0.0')
+
+
+def view_patient(id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        
+        # Fetch patient details
+        cursor.execute("SELECT * FROM patients WHERE pat_id = %s", (id,))
+        patient = cursor.fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        if patient:
+            return jsonify(patient), 200
+        else:
+            return jsonify({"message": "Patient not found"}), 404
+    except mysql.connector.Error as err:
+        print(f"Database error while fetching patient: {err}")
+        return jsonify({"message": f"Database error: {str(err)}"}), 500
+    
+def view_doctor(id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        
+        # Fetch doctor details
+        cursor.execute("SELECT * FROM doctors WHERE doc_id = %s", (id,))
+        doctor = cursor.fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        if doctor:
+            return jsonify(doctor), 200
+        else:
+            return jsonify({"message": "Doctor not found"}), 404
+    except mysql.connector.Error as err:
+        print(f"Database error while fetching doctor: {err}")
+        return jsonify({"message": f"Database error: {str(err)}"}), 500
+
+def get_doctor_name(id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        
+        # Fetch doctor name
+        cursor.execute("SELECT doc_name FROM doctors WHERE doc_id = %s", (id,))
+        result = cursor.fetchone()
+        
+        cursor.close()
+        conn.close()
+        
+        if result:
+            return result['doc_name']
+        else:
+            return ''
+    except mysql.connector.Error as err:
+        print(f"Database error while fetching doctor name: {err}")
+        return ''
+def get_patient_name(id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+                
+        # Fetch patient name
+        cursor.execute("SELECT pat_name FROM patients WHERE pat_id = %s", (id,))
+        result = cursor.fetchone()
+                
+        cursor.close()
+        conn.close()
+        if result:
+            return result['pat_name']
+        else:
+            return ''
+    except mysql.connector.Error as err:
+        print(f"Database error while fetching patient name: {err}")
+        return ''
+# Different function, returns a super long string instead of a json object
+def view_conversation(id):
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        
+        # Fetch conversation details
+        cursor.execute("SELECT * FROM comments WHERE thread_id = %s", (id,))
+        conversation = cursor.fetchall()
+
+        
+        string_ret = ""
+        patientname = ""
+        doctorname = ""
+        if conversation:
+            for comment in conversation:
+                if json.loads(comment['auth_id'])[0]==0:
+                    patientname = get_patient_name(json.loads(comment['auth_id'])[1])
+                if json.loads(comment['auth_id'])[0]==1:
+                    doctorname = get_doctor_name(json.loads(comment['auth_id'])[1])
+
+            for comment in conversation:
+            # Convert JSON strings back to Python objects
+                if json.loads(comment['auth_id'])[0]==0:
+                    string_ret += f"Patient ";patientname;": {comment['content']}\n"
+                elif json.loads(comment['auth_id'])[0]==1:
+                    string_ret += f"Doctor" ;doctorname;": {comment['content']}\n"
+                else:
+                    string_ret += f"AI: {comment['content']}\n"
+
+            cursor.close()
+            conn.close()
+        
+            return conversation
+        else:
+            cursor.close()
+            conn.close()
+        
+            return "message Conversation not found"
+        # Iterate through the conversation and format the output
+        
+    except mysql.connector.Error as err:
+        print(f"Database error while fetching conversation: {err}")
+        return jsonify({"message": f"Database error: {str(err)}"}), 500
+

@@ -8,6 +8,7 @@ def test_flask_app():
     print("Make sure MySQL is running and configured properly in src/insert.py")
     print("Ensure database credentials are correct before running this test\n")
     
+    
     # Test patient insertion
     patient_data = {
         "pat_id": 1,

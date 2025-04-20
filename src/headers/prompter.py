@@ -53,3 +53,28 @@ def importance(prompt, model="claude-3-opus-20240229", max_tokens=1000):
         print("Unexpected response structure:", response.text)
         return None
     
+def mchat(prompt, model="claude-3-opus-20240229", max_tokens=1000):
+    url = "https://api.anthropic.com/v1/messages"
+    headers = {
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json"
+    }
+    data = {
+        "model": model,
+        "max_tokens": max_tokens,
+        "messages": [
+            {"role": "user", "content": (prompt+ ". This is the conversation of the .")}
+        ]
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        return response.json()["content"][0]["text"]
+    except requests.exceptions.RequestException as e:
+        print("Error during request:", e)
+        return None
+    except KeyError:
+        print("Unexpected response structure:", response.text)
+        return None
