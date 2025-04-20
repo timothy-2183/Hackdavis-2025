@@ -6,6 +6,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Dashboard from '../pages/Dashboard'
 import GetSupport from '../pages/GetSupport'
+import Features from '../pages/Features'
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
       </Route>
       <Route path='/getsupport'>
         <GetSupport></GetSupport>
+      </Route>
+      <Route path='/features'>
+        <Features></Features>
       </Route>
     </Switch>
     </>

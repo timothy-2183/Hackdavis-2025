@@ -11,7 +11,7 @@ function Home() {
         
         <div className="cta-buttons">
           <a href="/login" className="cta-button primary">Get Started</a>
-          <a href="#features" className="cta-button secondary">Learn More</a>
+          <a href="/features" className="cta-button secondary">Learn More</a>
         </div>
       </div>
     </div>
