@@ -146,8 +146,22 @@ def insert_comment_route():
     else:
         return jsonify({"message": "Failed to insert comment"}), 500
 
+@app.route('/', methods=['GET'])
+def index():
+    """Homepage route to confirm the server is running"""
+    return jsonify({
+        "status": "ok",
+        "message": "Flask API server is running",
+        "endpoints": {
+            "insert_patient": "/insert_patient",
+            "insert_doctor": "/insert_doctor", 
+            "insert_comment": "/insert_comment"
+        }
+    })
+
 # Initialize database on startup
 initdb()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    print("Starting Flask server on http://localhost:5000")
+    app.run(debug=True, host='0.0.0.0')
