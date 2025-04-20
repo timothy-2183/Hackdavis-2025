@@ -1,6 +1,6 @@
 .patient-card {
     color: black;
-    background-color: #4895ef;
+    background-color: #7db2ee;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -8,4 +8,9 @@
     align-items: flex-start;
     border: 1px black solid;
     border-radius: 10px;
+    min-width: 25vw;
+}
+
+.patient-card:hover {
+    box-shadow: 5px 5px 5px lightskyblue;
 }

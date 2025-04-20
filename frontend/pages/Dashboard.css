@@ -4,6 +4,8 @@
 }
 
 .dashboard-main {
+    gap: 1em;
+    display: flex;
     min-width: 95vw;
     min-height: 95vh;
 }
@@ -11,6 +13,55 @@
 .patients-panel {
     max-width: 50vw;
 }
+
+.conversation-panel {
+    color: black;
+    border-radius: 15px;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    min-width: 30vw;
+    height: 80vh;
+}
+
+.conversation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    overflow: auto;
+}
+
+
+.feedback-panel {
+    min-width: 35%;
+    max-width: 50vw;
+    display: flex;
+}
+
+.feedback-container {
+    color: black;
+    background-color: lightcyan;
+    border-radius: 15px;
+    padding: 1em;
+    min-width: 90%;
+    height: 50%;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.feedback-input {
+    width: 90%;
+    height: 20em;
+}
+
 
 .dashboard-container {
     min-width: 95vw;

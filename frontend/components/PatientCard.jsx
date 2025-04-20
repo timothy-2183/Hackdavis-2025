@@ -6,14 +6,22 @@ function PatientCard(patientData) {
 
   return (
     <div className='patient-card'>
-        <i><p>Name: </p></i>
-        <b><p>Symptoms</p></b>
-        <ul>
-            <li>Symptom 1</li>
-            <li>Symptom 2</li>
-        </ul>
+      <div className='patient-info'>
+        <i><p>Name: {patientData.name}</p></i>
+      </div>
+        
+        <div className='symptoms-container'>
+          <b><p>Symptoms:</p></b>
+          <ul>
+              <li>Symptom 1</li>
+              <li>Symptom 2</li>
+          </ul>
+        </div>
+        
         <div className='tags'>
-            <Tag></Tag>
+            <Tag text='Urgent' color='red'></Tag>
+            <Tag text='Showing Improvement' color='green'></Tag>
+            <Tag text='Needs Followup' color='Yellow'></Tag>
         </div>
     </div>
   )

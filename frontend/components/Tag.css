@@ -1,5 +1,11 @@
 .tag {
-    background-color: red;
     border-radius: 15px;
     padding: 0.25em;
+}
+
+.tags {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5em;
 }

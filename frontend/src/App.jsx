@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Dashboard from '../pages/Dashboard'
+import GetSupport from '../pages/GetSupport'
 
 function App() {
 
@@ -20,6 +21,9 @@ function App() {
       </Route>
       <Route path='/dashboard'>
         <Dashboard></Dashboard>
+      </Route>
+      <Route path='/getsupport'>
+        <GetSupport></GetSupport>
       </Route>
     </Switch>
     </>

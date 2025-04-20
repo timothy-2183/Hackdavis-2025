@@ -4,8 +4,8 @@ import './Tag.css'
 function Tag(tagData) {
 
   return (
-    <div className='tag'>
-        Example
+    <div className='tag' style={{backgroundColor: tagData.color || 'red'}}>
+        {tagData.text}
     </div>
   )
 }
