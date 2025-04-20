@@ -11,7 +11,7 @@
     display: flex;
     min-width: 95vw;
     min-height: 90vh;
-    padding: 0 2rem 2rem;
+    padding: 0;
 }
 
 .patients-panel {
