@@ -270,16 +270,16 @@ function Dashboard() {
           <div className='conversation-panel'>
             <div className="conversation-header">
               <h3>Conversation History</h3>
-              <button 
+            </div>
+            {aiAnalysis && renderAiAnalysis()}
+            <div className='conversation-container'>
+            <button 
                 className="analyze-button" 
                 onClick={analyzeConversation}
                 disabled={!activeThread || analyzingConversation}
               >
                 {analyzingConversation ? 'Analyzing...' : 'Analyze Conversation'}
               </button>
-            </div>
-            {aiAnalysis && renderAiAnalysis()}
-            <div className='conversation-container'>
               {loading ? (
                 <p className="loading">Loading conversation...</p>
               ) : messages.length > 0 ? (
