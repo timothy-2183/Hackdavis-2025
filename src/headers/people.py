@@ -4,7 +4,6 @@ class Patient():
         self.ID = ID
         self.name = name
         self.age = age
-        self.contact = contact
         self.medical_history = []
         self.allergies = allergies
         self.medications = medications
@@ -18,6 +17,7 @@ class Patient():
                 print(f"Date: {record['date']}, Diagnosis: {record['diagnosis']}, Treatment: {record['treatment']}")
         else:
             print("Patient not found.")
+    
     def add_medical_record(self, patient, date, diagnosis, treatment):
         if patient in self.patients:
             record = {
