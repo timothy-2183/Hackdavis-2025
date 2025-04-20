@@ -3,9 +3,8 @@ import './PatientCard.css'
 import Tag from './Tag'
 
 function PatientCard(patientData) {
-
   return (
-    <div className='patient-card'>
+    <div className={patientData.active ? 'patient-card patient-active': 'patient-card'} onClick={patientData.onClick}>
       <div className='patient-info'>
         <i><p>Name: {patientData.name}</p></i>
       </div>

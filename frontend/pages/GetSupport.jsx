@@ -3,12 +3,14 @@ import './GetSupport.css'
 import Message from '../components/Message'
 
 function GetSupport() {
+    const [messageData, setMessageData] = useState([]);
+
     function handleMessageSubmit(formData) {
 
     }
 
     function handleSymptomSubmit(formData) {
-        
+
     }
 
   return (

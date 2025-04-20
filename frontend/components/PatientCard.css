@@ -9,6 +9,11 @@
     border: 1px black solid;
     border-radius: 10px;
     min-width: 25vw;
+    margin-bottom: 1em;
+}
+
+.patient-active {
+    background-color: #67a8f3;
 }
 
 .patient-card:hover {
